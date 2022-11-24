@@ -14,6 +14,7 @@ mongoose.connect("mongodb://mongo:27017/mongocontainer",
     e=> console.error(e)
 )
 
+await createNewProfile("bob");
 // mongoose.connect("mongodb+srv://ass4:mongo4998@cluster0.dqr9rtj.mongodb.net/?retryWrites=true&w=majority",
 //     ()=> {
 //         //console.log("connection in a pineapple under the sea")
