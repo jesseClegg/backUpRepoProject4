@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  client:
+    container_name: clientcontainer
+    image: clientimage
+    build: ./client
+    restart: unless-stopped
+    networks: 
+      - mongo-compose-network
+    ports:
+      - "80:3000"
+    expose:
+      - "3000"
+    #stdin_open: true
+    #tty: true
+  server:
+    container_name: servercontainer
+    image: serverimage
+    build: ./server
+    environment: 
+      - MONGODB_CONNSTRING=mongodb://ass4:mongo4998@mongodb
+    restart: unless-stopped
+    networks: 
+      - mongo-compose-network
+    ports:
+      - "3001:3001"
+    links:
+      - mongo
+    expose:
+      - "3001"
+    #stdin_open: true
+    #tty: true
+  mongo:
+    container_name: mongocontainer
+    image: mongo
+    ports:
+       - "27017:27017"
+    restart: unless-stopped
+    networks: 
+      - mongo-compose-network
+    #environment:
+     # - MONGO_INITDB_ROOT_USERNAME=ass4
+     # - MONGO_INITDB_ROOT_PASSWORD=mongo4998
+    volumes:
+      - db:/data/db
+
+volumes:
+  db:
+
+networks:
+  mongo-compose-network:
+    driver: bridge
