@@ -14,7 +14,9 @@ mongoose.connect("mongodb://mongo:27017/mongocontainer",
     e=> console.error(e)
 )
 
-
+createNewProfile("Sponge Robert", "https://s3forninad.s3.amazonaws.com/mockingspongebobbb.jpg", "The best time to wear a striped sweater is all the time." );
+createNewProfile("Eugene Krabs", "https://s3forninad.s3.amazonaws.com/mrKrabsIsaRobot.jpg", "Hey, that's pretty catchy. Bee-bee-boo-bop, bee-bee-boo-beep. Yeah, that's not bad. I love this young people's music.");
+createNewProfile("Karen", "https://s3forninad.s3.amazonaws.com/karen.jpg", "Plankton, get the secret formula");
 // mongoose.connect("mongodb+srv://ass4:mongo4998@cluster0.dqr9rtj.mongodb.net/?retryWrites=true&w=majority",
 //     ()=> {
 //         //console.log("connection in a pineapple under the sea")
@@ -23,23 +25,17 @@ mongoose.connect("mongodb://mongo:27017/mongocontainer",
 // )
 
 router.get('/getAllProfiles',cors(), async (req, res) => {
-    console.log("trying to get all profiles");
     const all = await profileSchema.find();
-    console.log("made it past schema.find()!");
     res.send(all);
 })
 
 router.get('/getHello',cors(), async (req, res) => {
-    console.log("getting hello");
     res.send("hello");
 })
 
 router.post('/addUser', async (req, res) => {
     const name = req.body.name;
-    console.log("trying to add a user");
     const bio = req.body.bio;
-    //console.log(name, pictureURL, bio);
-    //console.log("adding user to bikini bottom...");
         createNewProfile(name, bio).then(r => {
            res.send("successfully added user");
         });
@@ -50,8 +46,8 @@ async function createNewProfile(name, pictureURL, bio) {
     const profile = await profileSchema.create(
         {
             fullName: name,
-            bio: "texas texas texas",
-            profilePictureURL: "https://s3forninad.s3.amazonaws.com/sandy.jpg"
+            bio: bio,
+            profilePictureURL: pictureURL
         }
     )
 }
