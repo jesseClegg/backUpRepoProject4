@@ -10,8 +10,8 @@ services:
       - mongo-compose-network
     ports:
       - "80:3000"
-    expose:
-      - "3000"
+    #expose:
+      #- "3000"
     #stdin_open: true
     #tty: true
   server:
@@ -27,8 +27,8 @@ services:
       - "3001:3001"
     links:
       - mongo
-    expose:
-      - "3001"
+    #expose:
+      #- "3001"
     #stdin_open: true
     #tty: true
   mongo:
