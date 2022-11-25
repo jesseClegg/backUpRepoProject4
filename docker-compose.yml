@@ -3,23 +3,19 @@ version: "3.8"
 services:
   client:
     container_name: clientcontainer
-    depends_on:
-      - mongo
     image: clientimage
     build: ./client
     restart: unless-stopped
     networks: 
       - mongo-compose-network
     ports:
-      - "3000:3000"
+      - "80:3000"
     expose:
       - "3000"
     #stdin_open: true
     #tty: true
   server:
     container_name: servercontainer
-    depends_on:
-      - mongo
     image: serverimage
     build: ./server
     environment: 
@@ -31,8 +27,8 @@ services:
       - "3001:3001"
     links:
       - mongo
-   # expose:
-     # - "3001"
+    expose:
+      - "3001"
     #stdin_open: true
     #tty: true
   mongo:
@@ -48,20 +44,9 @@ services:
      # - MONGO_INITDB_ROOT_PASSWORD=mongo4998
     volumes:
       - db:/data/db
-  caddy:
-    container_name: caddycontainer
-    image: caddy:latest
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
+
 volumes:
   db:
-  caddy_data:
-  caddy_config:
 
 networks:
   mongo-compose-network:
