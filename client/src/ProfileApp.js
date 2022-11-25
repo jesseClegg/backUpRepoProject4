@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 
 import './App.css';
 import {Container} from "react-bootstrap";
-import AddEugeneKrabsButton from "./addEugeneKrabsButton";
+//import AddEugeneKrabsButton from "./addEugeneKrabsButton";
 
 function App() {
     return (
