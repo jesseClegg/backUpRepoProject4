@@ -6,11 +6,12 @@ import Col from 'react-bootstrap/Col';
 
 import './App.css';
 import {Container} from "react-bootstrap";
-
+import AddEugeneKrabsButton from "./addEugeneKrabsButton";
 
 function App() {
     return (
         <>
+            <AddEugeneKrabsButton/>
             <Container style={ {backgroundColor:"#e0e0d1", marginBottom: 30, marginTop: 30} }>
                 <Row>
                     <Col style={ {marginBottom: 15, marginTop: 15} }>

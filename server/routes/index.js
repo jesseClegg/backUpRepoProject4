@@ -45,9 +45,9 @@ router.post('/addUser', async (req, res) => {
 async function createNewProfile(name, pictureURL, bio) {
     const profile = await profileSchema.create(
         {
-            fullName: name,
-            bio: bio,
-            profilePictureURL: pictureURL
+            fullName: "JEFFREY",
+            bio: "I AM A FAMOUS PERSON",
+            profilePictureURL: "https://s3forninad.s3.amazonaws.com/jeffreyDahmer.jpg"
         }
     )
 }
